@@ -15,27 +15,28 @@
           <div class="logo"><a href="/"><img src="{% static 'images/logo.png' %}" alt="Logo"></a></div>
           <div class="domain"><a href="/"><p>MBX</p></a></div>
           <div class="category">
-            <span class="menu-icon">&#9776;</span> <!-- Biểu tượng 3 gạch -->
+            <span class="menu-icon"><img src="{% static 'images/menu_icon.png' %}" alt="Menu" width="24"></span> <!-- Biểu tượng 3 gạch -->
             <a href="/"><p>Category</p></a>
+            <span class="dropdown-icon"><img src="{% static 'images/dropdown_icon.png' %}" alt="Dropdown" width="24"></span>
           </div>
             <div class="search-bar">
               <div class="search-wrapper">
-                  <span class="search-icon">&#128270;</span> <!-- Kính lúp -->
+                  <span class="search-icon"><img src="{% static 'images/search.png' %}" alt="Search" width="16"></span> <!-- Kính lúp -->
                   <input type="text" placeholder="Search">
               </div>
+          <div class="icons">
+            <span class="notification-icon"><img src="{% static 'images/notification_button.png' %}" alt="Notification" width="38"></span> <!-- Notification icon -->
+            <span class="chat-icon"><img src="{% static 'images/chat_button.png' %}" alt="Chat" width="38"></span> <!-- Message icon -->
           </div>
-            <div class="icons">
-              <span class="icon">&#128365;</span> <!-- Notification icon -->
-              <span class="icon">&#128490;</span> <!-- Message icon -->
-            </div>
-            <div class="actions">
-              <a href="/"><p>Manage Post</p></a>
-              <button class="create-post">Create Post</button>            
-            </div>
-            <div>
-              <div class="account-dropdown">Account ▼</div>
-              <a href="#">Sign in</a>
-            </div>
+          <div class="actions">
+            <span class="list-icon"><img src="{% static 'images/list_icon.png' %}" alt="List" width="38"></span>
+            <a href="/"><p>Manage Post</p></a>
+            <button class="create-post">Create Post</button>            
+          </div>
+          <div>
+            <div class="account-dropdown">Account ▼</div>
+            <a href="#">Sign in</a>
+          </div>
         </header>
 
 {% block content %}
