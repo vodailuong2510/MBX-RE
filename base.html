@@ -12,30 +12,46 @@
 <body>
     <!-- Phần Header -->
         <header class="header">
-          <div class="logo"><a href="/"><img src="{% static 'images/logo.png' %}" alt="Logo"></a></div>
-          <div class="domain"><a href="/"><p>MBX</p></a></div>
-          <div class="category">
-            <span class="menu-icon"><img src="{% static 'images/menu_icon.png' %}" alt="Menu" width="24"></span> <!-- Biểu tượng 3 gạch -->
-            <a href="/"><p>Category</p></a>
-            <span class="dropdown-icon"><img src="{% static 'images/dropdown_icon.png' %}" alt="Dropdown" width="24"></span>
-          </div>
-            <div class="search-bar">
-              <div class="search-wrapper">
-                  <span class="search-icon"><img src="{% static 'images/search.png' %}" alt="Search" width="16"></span> <!-- Kính lúp -->
-                  <input type="text" placeholder="Search">
-              </div>
-          <div class="icons">
-            <span class="notification-icon"><img src="{% static 'images/notification_button.png' %}" alt="Notification" width="38"></span> <!-- Notification icon -->
-            <span class="chat-icon"><img src="{% static 'images/chat_button.png' %}" alt="Chat" width="38"></span> <!-- Message icon -->
-          </div>
-          <div class="actions">
-            <span class="list-icon"><img src="{% static 'images/list_icon.png' %}" alt="List" width="38"></span>
-            <a href="/"><p>Manage Post</p></a>
-            <button class="create-post">Create Post</button>            
-          </div>
-          <div>
-            <div class="account-dropdown">Account ▼</div>
+          <div class="top">
             <a href="#">Sign in</a>
+            <a href="#">Sign up</a>
+            <a href="#">Send feedback</a>
+            <a href="#">Help center</a>
+            <a href="#">FAQ</a>
+          </div>
+          <div class="bottom">
+            <div class="logo"><a href="/"><img src="{% static 'images/logo.png' %}" alt="Logo"></a></div>
+            <div class="domain"><a href="/"><p>MBX</p></a></div>
+            <div class="category">
+              <span class="menu-icon"><img src="{% static 'images/menu_icon.png' %}" alt="Menu" width="24"></span> <!-- Biểu tượng 3 gạch -->
+              <a href="/"><p>Category</p></a>
+              <span class="dropdown-icon"><img src="{% static 'images/dropdown_icon.png' %}" alt="Dropdown" width="24"></span>
+            </div>
+              <div class="search-bar">
+                <div class="search-wrapper">
+                    <span class="search-icon"><img src="{% static 'images/search.png' %}" alt="Search" width="16"></span> <!-- Kính lúp -->
+                    <input type="text" placeholder="Search">
+                </div>
+              </div>
+            <div class="icons">
+              <span class="notification-icon"><img src="{% static 'images/notification_button.png' %}" alt="Notification" width="38"></span> <!-- Notification icon -->
+            </div>
+            <div class="icons">
+              <span class="chat-icon"><img src="{% static 'images/chat_button.png' %}" alt="Chat" width="38"></span> <!-- Message icon -->
+            </div>
+            <div class="actions">
+              <span class="list-icon"><img src="{% static 'images/list_icon.png' %}" alt="List" width="38"></span>
+              <a href="/"><p>Manage Post</p></a>
+            </div>
+            <div class="account">
+              <span class="account-icon"><img src="{% static 'images/user_icon.png' %}" alt="Account" width="38"></span>
+              <a href="/"><p>Account</p></a>
+              <span class="dropdown-icon"><img src="{% static 'images/dropdown_icon.png' %}" alt="Dropdown" width="24"></span>
+            </div>
+            <button class="create-post">
+              <span class="create-icon"><img src="{% static 'images/create.png' %}" alt="Create" width="24"></span>
+              CREATE POST
+            </button>        
           </div>
         </header>
 
