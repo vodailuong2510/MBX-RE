@@ -1,6 +1,7 @@
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'open sans', sans-serif;
+  background-color: #f4f4f4;
 }
 
 .header {
@@ -9,6 +10,8 @@ body {
   justify-content: space-between;
   padding: 10px 50px;
   background-color: #FAD266; /* Màu vàng */
+  height: 89px;
+  font-size: 14px;
 }
 
 .logo {
@@ -43,21 +46,22 @@ body {
   position: relative;
   display: flex;
   align-items: center;
+  width: 562px;
+  height: 36px;
 }
 
 .search-icon {
+  padding: 13px 10px 10px 8px;
   position: absolute;
-  left: 10px;
   font-size: 15px; 
   color: #888;
 }
 
 .search-wrapper input[type="text"] {
-  padding: 10px 10px 10px 40px; 
-  border: 1px solid #ccc; 
-  border-radius: 20px;
-  font-size: 15px; 
-  outline: none; 
+  padding: 10px 10px 10px 36px; 
+  border-radius: 8px;
+  font-size: 14px; 
+  outline: none;
 }
 
 .icons .icon {
@@ -122,9 +126,14 @@ body {
 }
 
 .footer {
-  background-color: #FFF9E6; /* Màu nền */
-  padding: 20px;
+  background-color: #ffffff; /* Màu nền */
   text-align: center;
+  position: fixed;
+  border-top: 15px solid #FAD266;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  height: 300px;
 }
 
 .footer-container {
@@ -135,7 +144,7 @@ body {
 }
 
 .footer-section h3 {
-  font-size: 15px;
+  font-size: 18px;
   margin-bottom: 10px;
 }
 
@@ -152,7 +161,8 @@ body {
 .footer-section ul li a {
   text-decoration: none;
   color: black;
-  font-size: 15px;
+  font-size: 16px;
+  text-align: left;
 }
 
 .footer-section ul li a:hover {
@@ -166,8 +176,8 @@ body {
 }
 
 .social-icons a img {
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
 }
 
 hr {
@@ -180,7 +190,7 @@ hr {
   font-size: 15px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
@@ -225,6 +235,7 @@ text-align: center;
 margin: 0; 
 color: #000000;
 font-weight: bold;
+font-size: 30px;
 }
 
 .domain a {
@@ -245,7 +256,7 @@ font-size: 15px;
 .category a {
   text-decoration: none; 
   margin: 0; 
-  font-size: 15px;
+  font-size: 14px;
   color: #000000; /
 }
 
