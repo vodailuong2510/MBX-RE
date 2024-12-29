@@ -2,13 +2,18 @@
 
 {% load static %}
 
-{% block title %}Sign In Page{% endblock %}
+{% block title %}Sign Up Page{% endblock %}
 
 {% block content %}
-    <div class="login-banner">
-        <div class="banner-white">
+    <div class="login-banner" style="height: 686px;">
+        <div class="banner-color" style="height: 686px;">
+            <h1 style="margin: 0 auto">Welcome to MBX</h1>
+            <h3 style="margin: 0 auto; font-weight: normal;">Have an account?</h3>
+            <input type="submit" value="Sign In" class="sub-button" />
+        </div>
+        <div class="banner-white" style="height: 686px;">
             <div class="title-container">
-                <h1>Sign In</h1>
+                <h1>Sign Up</h1>
                 <div class="other-login">
                     <img src="{% static 'images/fb_icon.png' %}" alt="Facebook icon" width="35" height="35">
                     <img src="{% static 'images/gg_icon.png' %}" alt="Google icon" width="35" height="35">
@@ -29,20 +34,20 @@
                 {% endif %}
                 <div class="form-label">USERNAME</div>
                 {{form.username}}
+                <div class="form-label">PHONE NUMBER</div>
+                {{form.phoneNum}}
+                <div class="form-label">EMAIL</div>
+                {{form.email}}
                 <div class="form-label">PASSWORD</div>
                 {{form.password}}
+                <div class="form-label">RE-ENTER PASSWORD</div>
+                {{form.reEnterPassword}}
                 <input type = 'hidden'/>
-                <input type="submit" value="Sign In" class="custom-button" />
+                <div class="form-options" style="margin-top: 0px; margin-bottom: 15px;">
+                    <a href="#">I agree with Terms & Conditions</a>
+                </div>
+                <input type="submit" value="Sign Up" class="custom-button" />
             </form>
-            <div class="form-options">
-                <a href="#">Remember me</a>
-                <a href="#">Forgot password?</a>
-            </div>
-        </div>
-        <div class="banner-color">
-            <h1 style="margin: 0 auto">Welcome to MBX</h1>
-            <h3 style="margin: 0 auto; font-weight: normal;">Don’t have an account?</h3>
-            <input type="submit" value="Sign Up" class="sub-button" />
         </div>
     </div>
 {% endblock %}
