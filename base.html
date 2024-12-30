@@ -12,43 +12,43 @@
 <body>
     <!-- Phần Header -->
         <header class="header">
-          <div class="top">
-            <a href="#">Sign in</a>
-            <a href="#">Sign up</a>
-            <a href="#">Send feedback</a>
-            <a href="#">Help center</a>
-            <a href="#">FAQ</a>
-          </div>
-          <div class="bottom">
+
+          <div class="logo-and-domain">
             <div class="logo"><a href="/"><img src="{% static 'images/logo.png' %}" alt="Logo"></a></div>
             <div class="domain"><a href="/"><p>MBX</p></a></div>
-            <div class="category">
-              <img src="{% static 'images/menu_icon.png' %}" alt="Menu" width="24"> <!-- Biểu tượng 3 gạch -->
-              <a href="/"><p>Category</p></a>
-              <img src="{% static 'images/dropdown_icon.png' %}" alt="Dropdown" width="24">
-            </div>
-            <div class="search-bar">
-              <div class="search-wrapper">
-                  <span class="search-icon"><img src="{% static 'images/search.png' %}" alt="Search" width="16"></span> <!-- Kính lúp -->
-                  <input type="text" placeholder="Search">
-              </div>
-            </div>
-            <div class="icon"><img src="{% static 'images/notification_button.png' %}" alt="Notification" width="38"></div> <!-- Notification icon -->
-            <div class="icon"><img src="{% static 'images/chat_button.png' %}" alt="Chat" width="38"></div> <!-- Message icon -->
-            <div class="actions">
-              <img src="{% static 'images/list_icon.png' %}" alt="List" width="38">
-              <a href="/"><p>Manage Post</p></a>
-            </div>
-            <div class="account">
-              <img src="{% static 'images/user_icon.png' %}" alt="Account" width="38">
-              <a href="/"><p>Account</p></a>
-              <img src="{% static 'images/dropdown_icon.png' %}" alt="Dropdown" width="24">
-            </div>
-            <button class="create-post">
-              <img src="{% static 'images/create.png' %}" alt="Create" width="24">
-              CREATE POST
-            </button>        
           </div>
+
+          <div class="category">
+            <a href="/"><img src="{% static 'images/menu_icon.png' %}" alt="Menu"><p>Category</p></a>
+          </div>
+
+          <div class="search-bar">
+            <div class="search-wrapper">
+                <span class="search-icon"><img src="{% static 'images/search.png' %}" alt="Search" width="16"></span> 
+                <input type="text" placeholder="Search">
+            </div>
+          </div>
+
+            <div class="icon"><img src="{% static 'images/notification_button.png' %}" alt="Notification"></div> 
+            <div class="icon"><img src="{% static 'images/chat_button.png' %}" alt="Chat"></div> 
+
+            <div class="actions">
+              <a href="/"><img src="{% static 'images/list_icon.png' %}" alt="List"><p>Manage Post</p></a>
+            </div>
+
+            <button class="create-post">
+              <a href="/"><img src="{% static 'images/create.png' %}" alt="Create"><p>Create Post</p></a>
+            </button>    
+
+            {% if user.username %}
+              <div class="account">
+                <a href="/"><img src="{% static 'images/user_icon.png' %}" alt="Account"><p>Account </p></a>
+              </div>
+            {% else %}  
+            <div class="account">
+              <a href="{% url 'login' %}"><img src="{% static 'images/user_icon.png' %}" alt="Account" width="38"><p>Sign in</p></a>
+            </div>
+            {% endif %}
         </header>
 
 {% block content %}

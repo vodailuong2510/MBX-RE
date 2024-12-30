@@ -1,11 +1,3 @@
-html, body {
-  margin: 0;
-  height: 100%;
-  width: 100%;
-  overflow-x:hidden;
-}
-
-/* Header & Footer */
 body {
   margin: 0;
   font-family: 'open sans', sans-serif;
@@ -13,94 +5,175 @@ body {
 }
 
 .header {
+  display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 30px;
-  background-color: #FAD266; /* Màu vàng */
-  height: 89px;
-  font-size: 14px;
-  position: relative;
-  z-index: 1000;
-  color: #000000;
+  padding: 10px 50px;
+  background-color: #FAD266;
 }
 
-.top {
+.logo-and-domain {
   display: flex;
-  justify-content: end;
-  padding: 10px 0 0;
-  gap: 30px;
-  margin: auto;
+  align-items: center; 
 }
 
-.top a {
-  text-decoration: none;
+.logo img {
+  width: 40px; 
+}
+
+.domain p {
   color: #000000;
-}
-
-.bottom {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  width: 100%;
-  bottom: 0;
-  padding: 10px 15px;
-}
-
-.logo {
-  font-size: 15px;
   font-weight: bold;
+  font-size: 20px;
 }
 
-.logo span {
-  color: black;
+.domain a {
+  text-decoration: none;
+}
+
+.category {
+  display: flex; 
+  align-items: center; 
+}
+.category a {
+  display: flex; 
+  text-decoration: none; 
+  font-size: 15px;
+  color: #000000; 
+}
+
+.category img {
+  width: 25px; 
+  height: auto; 
+  object-fit: contain; 
+}
+
+.category a:hover {
+  opacity: 0.5; 
 }
 
 .search-bar {
   display: flex;
   align-items: center;
   margin: 0px 20px 0px 0px;
+  font-size: 15px; 
 }
 
 .search-bar input {
-  width: 562px;
-  border-radius: 20px; 
+  width: 550px;
+  border-radius: 10px; 
   border: 1px solid #ffffff; 
   font-size: 15px; 
 }
 
 .search-bar input:focus {
-  outline: none; 
-  border-color: none;
+  border-color: black;
 }
 
 .search-wrapper {
   position: relative;
   display: flex;
   align-items: center;
-  width: 562px;
-  height: 36px;
+  width: 550px;
+  height: 30px;
 }
 
 .search-icon {
   padding: 13px 10px 10px 8px;
   position: absolute;
-  font-size: 15px; 
   color: #888;
 }
 
 .search-wrapper input[type="text"] {
-  padding: 10px 10px 10px 36px; 
-  border-radius: 8px;
-  font-size: 14px; 
+  padding: 10px 10px 10px 30px; 
   outline: none;
 }
 
-.icon{
+.icon img{
+  width: 35px;
+  height: auto;
   cursor: pointer;
+  margin-top: 5px;
 }
 
 .icon:hover {
-    opacity: 0.7; 
+    opacity: 0.5; 
+}
+
+.actions{
+  display: flex;
+  align-items: center;
+}
+
+.actions a{
+  display: flex; 
+  text-decoration: none;
+  color:#000000;
+  font-size: 15px;
+}
+
+.actions img {
+  width: 35px; 
+  height: auto; 
+  object-fit: contain; 
+}
+
+.actions a:hover {
+  opacity: 0.5;
+}
+
+.create-post {
+  display: flex;
+  align-items: center; 
+  justify-content: center;
+  background-color: #FF8F00; 
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.25);
+  width: 140px;
+  height: 38px;
+  text-decoration: none; 
+}
+
+
+.create-post a {
+  display: flex;
+  color: white; 
+  text-decoration: none; 
+}
+
+.create-post img {
+  width: 35px; 
+  height: auto; 
+  object-fit: contain; 
+}
+
+.create-post:hover {
+  background-color: #FFAF00;
+}
+
+.account {
+  display: flex; 
+  align-items: center; 
+}
+
+.account a {
+  display: flex; 
+  text-decoration: none; 
+  font-size: 15px;
+  color: #000000; 
+}
+
+.account img{
+  width: 35px; 
+  height: auto; 
+  object-fit: contain; 
+}
+
+.account a:hover {
+  opacity: 0.5;
 }
 
 .nav-links a {
@@ -114,41 +187,8 @@ body {
   text-decoration: underline;
 }
 
-.actions{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.actions a{
-  text-decoration: none;
-  color:#000000;
-  font-size: 15px;
-}
-
-.actions a:hover {
-  text-decoration: underline;
-}
-
-.create-post {
-  background-color: #FFA000; /* Màu vàng đậm */
-  color: white;
-  border: none;
-  padding: 8px 15px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 15px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  width: 172px;
-  height: 38px;
-}
-
-.create-post:hover {
-  background-color: #FF8F00; /* Màu hover */
-}
-
 .footer {
-  background-color: #ffffff; /* Màu nền */
+  background-color: #ffffff;
   text-align: center;
   position: relative;
   border-top: 15px solid #FAD266;
@@ -243,64 +283,9 @@ width: 100%;
 height: auto; 
 }
 
-.logo-and-domain {
-display: flex;
-flex-direction: column; 
-align-items: center;
-text-align: center; 
-}
-
-.domain {
-  margin-right: 30px; 
-}
-
-.domain p {
-margin: 0; 
-color: #000000;
-font-weight: bold;
-font-size: 30px;
-}
-
-.domain a {
-text-decoration: none; 
-font-size: 15px;
-}
-
 .menu-icon {
   font-size: 15px;
   cursor: pointer;
-}
-
-.category {
-  display: flex; 
-  align-items: center; 
-  gap: 5px; 
-}
-.category a {
-  text-decoration: none; 
-  margin: 0; 
-  font-size: 14px;
-  color: #000000; /
-}
-
-.category a:hover {
-  text-decoration: underline;
-}
-
-.account {
-  display: flex; 
-  align-items: center; 
-  gap: 5px; 
-}
-.account a {
-  text-decoration: none; 
-  margin: 0; 
-  font-size: 14px;
-  color: #000000; /
-}
-
-.account a:hover {
-  text-decoration: underline;
 }
 
 /*Home Page*/
