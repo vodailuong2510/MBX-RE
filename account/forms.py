@@ -14,7 +14,7 @@ class RegistrationForm(forms.Form):
         max_length=10,
         widget=forms.TextInput(attrs={
             'type': 'username',
-            'class': 'login-form-input',
+            'class': 'login-form',
             'placeholder': 'Username'
         })
     )
@@ -24,7 +24,7 @@ class RegistrationForm(forms.Form):
         max_length=10,
         widget=forms.TextInput(attrs={
             'type': 'phone',
-            'class': 'login-form-input',
+            'class': 'login-form',
             'placeholder': 'Phone number'
         })
     )
@@ -33,7 +33,7 @@ class RegistrationForm(forms.Form):
         label=format_html('Email{}', nbsp(20)),
         widget=forms.EmailInput(attrs={
             'type': 'email',
-            'class': 'login-form-input',
+            'class': 'login-form',
             'placeholder': 'Email'
         })
     )
@@ -42,7 +42,7 @@ class RegistrationForm(forms.Form):
         label=format_html('Mật khẩu{}', nbsp(15)),
         widget=forms.PasswordInput(attrs={
             'type': 'password',
-            'class': 'login-form-input',
+            'class': 'login-form',
             'placeholder': 'Password'
         })
     )
@@ -51,7 +51,7 @@ class RegistrationForm(forms.Form):
         label='Nhập lại mật khẩu',
         widget=forms.PasswordInput(attrs={
             'type': 'password',
-            'class': 'login-form-input',
+            'class': 'login-form',
             'placeholder': 'Re-enter password'
         })
     )
@@ -67,13 +67,13 @@ class MyAuthForm(AuthenticationForm):
         self.fields['password'].widget = forms.PasswordInput(attrs={'placeholder':'Password'}) 
         self.fields['password'].label = False
         
-class forgotPasswordForm(forms.Form):
-    email = forms.EmailField(
-        label=format_html('Email{}', nbsp(20)),
-        widget=forms.EmailInput(attrs={
-            'type': 'email',
-            'class': 'login-form-input',
-            'placeholder': 'Email'
+class ForgotPasswordForm(forms.Form):
+    emailPhone = forms.CharField(
+        label=format_html('Email/Phone{}', nbsp(20)),
+        widget=forms.TextInput(attrs={
+            'type': 'username',
+            'class': 'login-form',
+            'placeholder': 'Email/Phone'
         })
     )
     
@@ -81,12 +81,12 @@ class forgotPasswordForm(forms.Form):
         label=format_html('Mã OTP{}', nbsp(20)),
         widget=forms.TextInput(attrs={
             'type': 'text',
-            'class': 'login-form-input',
+            'class': 'login-form',
             'placeholder': 'OTP'
         })
     )
 
-class changePasswordForm(forms.Form):
+class ChangePasswordForm(forms.Form):
     password = forms.CharField(
         label=format_html('Mật khẩu mới{}', nbsp(15)),
         widget=forms.PasswordInput(attrs={
