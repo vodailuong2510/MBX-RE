@@ -22,28 +22,29 @@
                 {% endif %}
                 {% if messages %}
                     {% for message in messages %}
-                        <div class="alert alert-{{ message.tags }}">
+                        <div class="alert alert-{{message.tags}}">
                             {{ message }}
                         </div>
                     {% endfor %}
                 {% endif %}
 
-                <div class="form-label">USERNAME</div>
+                <div class="form-label">Username</div>
                 {{form.username}}
-                <div class="form-label">PASSWORD</div>
+                <div class="form-label">Password</div>
                 {{form.password}}
                 <input type = 'hidden'/>
                 <input type="submit" value="Sign In" class="custom-button" />
             </form>
             <div class="form-options" >
-                <a href="#">Remember me</a>
                 <a href="#">Forgot password?</a>
             </div>
         </div>
         <div class="banner-color">
             <h1 style="margin: 0 auto">Welcome to MBX</h1>
             <h3 style="margin: 0 auto; font-weight: normal;">Don’t have an account?</h3>
-            <input type="submit" value="Sign Up" class="sub-button" />
+            <form action="{% url 'register' %}" method="get" class="centered-form">
+                <input type="submit" value="Sign Up" class="sub-button" />
+            </form>
         </div>
     </div>
 {% endblock %}

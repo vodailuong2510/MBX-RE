@@ -9,7 +9,9 @@
         <div class="banner-color" style="height: 686px;">
             <h1 style="margin: 0 auto">Welcome to MBX</h1>
             <h3 style="margin: 0 auto; font-weight: normal;">Have an account?</h3>
-            <input type="submit" value="Sign In" class="sub-button" />
+            <form action="{% url 'login' %}" method="get" class="centered-form">
+                <input type="submit" value="Sign In" class="sub-button" />
+            </form>
         </div>
         <div class="banner-white" style="height: 686px;">
             <div class="title-container">
@@ -33,19 +35,22 @@
                     {% endfor %}
                 {% endif %}
                 
-                <div class="form-label">USERNAME</div>
+                <div class="form-label">Username</div>
                 {{form.username}}
-                <div class="form-label">PHONE NUMBER</div>
-                {{form.phoneNum}}
-                <div class="form-label">EMAIL</div>
-                {{form.email}}
-                <div class="form-label">PASSWORD</div>
+                <div class="form-label">Password</div>
                 {{form.password}}
-                <div class="form-label">RE-ENTER PASSWORD</div>
-                {{form.reEnterPassword}}
+                <div class="form-label">Re Password</div>
+                {{form.rePassword}}
+                <div class="form-label">Phone Number</div>
+                {{form.phoneNumber}}
+                <div class="form-label">Email</div>
+                {{form.email}}
                 <input type = 'hidden'/>
                 <div class="form-options" style="margin-top: 0px; margin-bottom: 15px;">
-                    <a href="#">I agree with Terms & Conditions</a>
+                    <label>
+                        <input type="checkbox" name="agree" required>
+                        <a href="#">I agree with Terms & Conditions</a>
+                    </label>
                 </div>
                 <input type="submit" value="Sign Up" class="custom-button" />
             </form>
