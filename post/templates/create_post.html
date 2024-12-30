@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Create post{% endblock %}
+
+{% block content %}
+<div class="banner-container" style="height: 1000px; border-radius: 10px; margin-top: 20px; flex-direction: row;">
+    <div class="banner-image">
+        <h2>Images and videos</h2>
+        <div class="image-container">
+            <img src="{% static 'images/img_add_icon.png' %}" alt="Add image" width="84">
+            <p>Upload up to 6 photos and/or maximum 1 video</p>
+        </div>
+            
+    </div>
+    <div class="banner-information">
+        <form method = "POST" class="post-form" id="postForm">
+            {% csrf_token %}
+            {% if form.errors %}
+                    <p style="color: red;">Tên tài khoản hoặc mật khẩu của bạn không đúng!</p>
+            {% endif %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            {{postForm.category}}
+            <div class="form-label">Product details</div>
+            {{postForm.title}}
+            {{postForm.brand}}
+            {{postForm.status}}
+            {{postForm.price}}
+            {{postForm.description}}
+            <div class="form-label">Seller details</div>
+            {{sellerForm.province}}
+            {{sellerForm.district}}
+            {{sellerForm.ward}}
+            {{sellerForm.detailedAddress}}
+            <input type = 'hidden'/>
+        </form>
+    </div>
+</div>
+<div class="submit-banner">
+    <button class="sub-button" style="width: 277px; height: 45px; margin: 0;">Preview</button>
+    <input type="submit" form="postForm" value="Post" class="custom-button" style="width: 277px; height: 45px;" />
+</div>
+{% endblock %}
+
+{% block footer %}{% endblock %}
