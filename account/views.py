@@ -2,16 +2,13 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.contrib.auth import login as auth_login, authenticate
-from .forms import RegistrationForm, LoginForm, forgot_passwordForm, ResetPasswordForm
+from .forms import RegistrationForm, LoginForm, forgot_passwordForm, ResetPasswordForm, change_passwordForm
 from django.shortcuts import redirect
 from django.contrib.auth.models import User
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
 from django.conf import settings
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.http import urlsafe_base64_decode
 from django.contrib.auth import get_user_model
-from django.utils.encoding import force_str
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
@@ -88,3 +85,17 @@ def reset_password(request, token):
 
     return render(request, 'reset_password.html', {'form': form, 'user': user})
 
+@login_required
+def change_password(request):
+    if request.method == 'POST':
+        form = change_passwordForm(request.POST, request=request)
+        if form.is_valid():
+            new_password = form.cleaned_data['new_password']
+            user = request.user
+            user.set_password(new_password)
+            user.save()
+            return redirect('home')
+    else:
+        form = change_passwordForm()
+
+    return render(request, 'change_password.html', {'form': form})

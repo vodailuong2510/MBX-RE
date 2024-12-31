@@ -43,6 +43,7 @@
             {% if user.username %}
               <div class="account">
                 <a href="/"><img src="{% static 'images/user_icon.png' %}" alt="Account"><p>Account </p></a>
+                <a href="{% url 'change_password' %}"><p>Change password</p></a>
                 <form id="logout-form" method="POST" action="{% url 'logout' %}" style="display: none;">
                   {% csrf_token %}
                 </form>

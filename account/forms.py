@@ -110,3 +110,28 @@ class ResetPasswordForm(forms.Form):
             raise forms.ValidationError('Your passwords do not match')
         
         return rePassword
+
+class change_passwordForm(forms.Form):
+    old_password = forms.CharField(label = "Old Password", widget=forms.PasswordInput(attrs={'placeholder': 'Old Password'}))
+    new_password = forms.CharField(label = "New Password", widget=forms.PasswordInput(attrs={'placeholder': 'New Password'}))
+    rePassword = forms.CharField(label = "Re Password", widget=forms.PasswordInput(attrs={'placeholder': 'Re Password'}))
+
+    def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)  # Lấy request ra khỏi kwargs
+        super().__init__(*args, **kwargs)
+
+    def clean(self):
+        old_password = self.cleaned_data['old_password']
+        new_password = self.cleaned_data['new_password']
+        rePassword = self.cleaned_data['rePassword']
+
+        if not authenticate(username=self.request.user.username, password=old_password):
+            raise forms.ValidationError('Your old password is incorrect')
+
+        if new_password and len(rePassword) < 8:
+            raise forms.ValidationError('Invalid password')
+
+        if new_password and rePassword and new_password != rePassword:
+            raise forms.ValidationError('Your passwords do not match')
+
+        return rePassword
