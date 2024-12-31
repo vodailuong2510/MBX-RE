@@ -4,7 +4,7 @@ from django.core.exceptions import ObjectDoesNotExist
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(label='Username', max_length=20, widget=forms.TextInput(attrs={'placeholder': 'Username'}))
-    password = forms.CharField(label='PassWord', widget=forms.PasswordInput(attrs={'placeholder': 'PassWord'}))
+    password = forms.CharField(label='Password', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
     rePassword = forms.CharField(label='Re Password', widget=forms.PasswordInput(attrs={'placeholder': 'Re Password'}))
     phoneNumber = forms.CharField(label='Phone Number', max_length=10, widget=forms.TextInput(attrs={'placeholder': 'Phone Number'}))
     email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'placeholder': 'Email'}))

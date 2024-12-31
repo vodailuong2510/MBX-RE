@@ -35,3 +35,9 @@ def register(request):
 #             messages.success(request, 'Mật khẩu của bạn đã được thay đổi.')
 #             return HttpResponseRedirect(reverse('login'))
 #     return render(request, 'change_password.html', {'form' : form})
+
+def profile(request):
+    return render(request, 'profile.html')
+
+def postManagement(request):
+    return render(request, 'post_management.html')
