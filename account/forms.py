@@ -1,18 +1,19 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth import authenticate
 
 class RegistrationForm(forms.Form):
     username = forms.CharField(label='Username', max_length=20, widget=forms.TextInput(attrs={'placeholder': 'Username'}))
-    password = forms.CharField(label='PassWord', widget=forms.PasswordInput(attrs={'placeholder': 'PassWord'}))
+    password = forms.CharField(label='PassWord', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
     rePassword = forms.CharField(label='Re Password', widget=forms.PasswordInput(attrs={'placeholder': 'Re Password'}))
     phoneNumber = forms.CharField(label='Phone Number', max_length=10, widget=forms.TextInput(attrs={'placeholder': 'Phone Number'}))
     email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
     
-    def clean_password(self):
-        password = self.cleaned_data.get('password')
-        rePassword = self.cleaned_data.get('rePassword')
-        
+    def clean_rePassword(self):
+        password = self.cleaned_data['password']
+        rePassword = self.cleaned_data['rePassword']
+
         if password and len(rePassword) < 8:
             raise forms.ValidationError('Invalid password')
         
@@ -23,6 +24,7 @@ class RegistrationForm(forms.Form):
         
     def clean_username(self):
         username = self.cleaned_data['username']
+
         if len(username) < 8:
             raise forms.ValidationError('The username must contain at least 8 characters')
         try:
@@ -60,3 +62,51 @@ class RegistrationForm(forms.Form):
             email=self.cleaned_data['email']
         )
         return user
+    
+class LoginForm(forms.Form):
+    username = forms.CharField(label='Username', max_length=20, widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    password = forms.CharField(label='PassWord', widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+
+    def clean(self):
+        cleaned_data = super().clean()
+        username = cleaned_data.get('username')
+        password = cleaned_data.get('password')
+
+        if username and password:
+            user = authenticate(username=username, password=password)
+            if user is None:
+                raise forms.ValidationError('The Username or Password is incorrect')
+            elif not user.is_active:
+                raise forms.ValidationError('This account is inactive')
+        return cleaned_data
+    
+class forgot_passwordForm(forms.Form):
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'placeholder': 'Email'}))
+
+    def clean_email(self):
+        email = self.cleaned_data['email']
+
+        if not email.endswith('@gmail.com') and not email.endswith('@yahoo.com') and not email.endswith('@hotmail.com'):
+            raise forms.ValidationError('Invalid email')
+        try:
+            User.objects.get(email=email)
+        except ObjectDoesNotExist:
+            raise forms.ValidationError('Email has not been used')
+
+        return email
+    
+class ResetPasswordForm(forms.Form):
+    new_password = forms.CharField(label = "New Password", widget=forms.PasswordInput(attrs={'placeholder': 'New Password'}))
+    rePassword = forms.CharField(label = "Re Password", widget=forms.PasswordInput(attrs={'placeholder': 'Re Password'}))
+
+    def clean(self):
+        new_password = self.cleaned_data['new_password']
+        rePassword = self.cleaned_data['rePassword']
+
+        if new_password and len(rePassword) < 8:
+            raise forms.ValidationError('Invalid password')
+        
+        if new_password and rePassword and new_password != rePassword:
+            raise forms.ValidationError('Your passwords do not match')
+        
+        return rePassword
