@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Create post{% endblock %}
+
+{% block content %}
+    <div class="account-container">
+        <div class="banner-container" style="height: 200px; width: 225px; border-radius: 10px; margin: 0px auto auto 0px; padding: 20px">
+            <div class="actions">
+                <a href="#"><img src="{% static 'images/profile_icon.png' %}" alt="Profile"><p style="margin-left: 12px;">Profile</p></a>
+            </div>
+            <div class="actions">
+                <a href="#"><img src="{% static 'images/bag_icon.png' %}" alt="Post management"><p style="margin-left: 12px;">Post management</p></a>
+            </div>
+            <div class="actions">
+                <a href="#"><img src="{% static 'images/cart_icon.png' %}" alt="Order management"><p style="margin-left: 12px;">Order management</p></a>
+            </div>
+        </div>
+        <div class="banner-container" style="height: 460px; width: 732px; border-radius: 10px; margin: 0px 0px auto auto;">
+            <h2>Profile</h2>
+        </div>
+    </div>
+{% endblock %}

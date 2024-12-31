@@ -99,3 +99,10 @@ def change_password(request):
         form = change_passwordForm()
 
     return render(request, 'change_password.html', {'form': form})
+
+def profile(request):
+    return render(request, 'profile.html')
+
+def postManagement(request):
+    return render(request, 'post_management.html')
+

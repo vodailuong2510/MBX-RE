@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Create post{% endblock %}
+
+{% block content %}
+    <div class="account-container">
+        <div class="banner-container" style="height: 200px; width: 225px; border-radius: 10px; margin: 0px auto auto 0px; padding: 20px">
+            <div class="actions">
+                <a href="#"><img src="{% static 'images/profile_icon.png' %}" alt="Profile"><p style="margin-left: 12px;">Profile</p></a>
+            </div>
+            <div class="actions">
+                <a href="#" style="color: #F8B400; font-weight:bold;"><img src="{% static 'images/bag_icon.png' %}" alt="Post management"><p style="margin-left: 12px;">Post management</p></a>
+            </div>
+            <div class="actions">
+                <a href="#"><img src="{% static 'images/cart_icon.png' %}" alt="Order management"><p style="margin-left: 12px;">Order management</p></a>
+            </div>
+        </div>
+        <div class="banner-container" style="height: 460px; width: 732px; border-radius: 10px; margin: 0px 0px auto auto; justify-content: start;">
+            <h2>Post management</h2>
+            <div class="type-container">
+                <a>Display</a>
+                <a>Hidden</a>
+                <a>Pending</a>
+                <a>Draft</a>
+            </div>
+            <div class="product" style="width: 686px; height: 205px; flex-direction: row;">
+                <img src="{% static 'images/products1.png' %}" alt="Product 1" style="margin:9px; width: 173px; height: 187px;">
+                <div class="product-details">
+                    <left>
+                        <p>Red sports car with the sunset in the background</p>
+                        <p>Category: Car</p>
+                        <p>Brand: MBW</p>
+                        <b>800.000.000 đ</b>
+                        <p style="color: #9E9E9E">Status: New</p>
+                    </left>
+                    <right>
+                        <img src="{% static 'images/more_vertical.png' %}" alt="More option" width="24">
+                    </right>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

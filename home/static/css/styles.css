@@ -116,7 +116,7 @@ body {
   display: flex; 
   text-decoration: none;
   color:#000000;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .actions img {
@@ -144,7 +144,6 @@ body {
   text-decoration: none; 
 }
 
-
 .create-post a {
   display: flex;
   color: white; 
@@ -161,9 +160,33 @@ body {
   background-color: #FFAF00;
 }
 
-.account {
+.no-account {
+  position: relative;
+  display: inline-block;
+  z-index: 10; 
+}
+
+.no-account a {
   display: flex; 
-  align-items: center; 
+  text-decoration: none; 
+  font-size: 15px;
+  color: #000000; 
+}
+
+.no-account img{
+  width: 35px; 
+  height: auto; 
+  object-fit: contain; 
+}
+
+.no-account a:hover {
+  opacity: 0.5;
+}
+
+.account {
+  position: relative;
+  display: inline-block;
+  z-index: 10; 
 }
 
 .account a {
@@ -181,6 +204,48 @@ body {
 
 .account a:hover {
   opacity: 0.5;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  left: -150px;
+  width: 272px;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 10;
+  border-radius: 5px;
+  max-height:300px;
+  overflow:scroll; 
+}
+
+.dropdown-content a {
+  color: #000000;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content group-title {
+  color: #616161;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  background-color: #FCE199;
+  font-weight: bold;
+}
+
+.dropdown-content a:hover {
+  background-color: #E0E0E0;
+  opacity: 1;
+}
+
+.account:hover .dropdown-content {
+  display: block;
+}
+
+.account:hover .dropbtn {
+  background-color: red;
 }
 
 .footer {
@@ -281,6 +346,7 @@ hr {
   box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
   margin: auto auto 10px auto;
   border-radius: 0px;
+  box-sizing: border-box;
 }
 
 .banner {
@@ -350,6 +416,7 @@ hr {
   background-color: #ffffff;
   border-radius: 0px;
   border: #E0E0E0 1px solid;
+  margin: auto;
 }
 
 .product img {
@@ -402,6 +469,8 @@ hr {
   color: #FF9D00;
   font-size: 16px;
 }
+
+
 
 /*Login Page*/
 .login-banner {
@@ -614,4 +683,60 @@ hr {
   width: 100%;
   background-color: #ffffff;
   border-top: #E0E0E0 1px solid;
+}
+
+/*Account Management Page*/
+.account-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  text-align: center;
+  margin: 20px auto;
+  height: 1158px;
+  width: 984px;
+}
+
+.type-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  text-align: center;
+  width: 473px;
+  height: 48px;
+  border: 1px solid #000000;
+  border-radius: 0px;
+  margin: 0 auto 20px auto;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  text-align: center;
+  width: 100%;
+  height: 187px;
+  margin: 9px;
+}
+
+.product-details left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+}
+
+.product-details right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  text-align: center;
+  width: 50%;
+  height: 100%;
 }
