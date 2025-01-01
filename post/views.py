@@ -1,17 +1,25 @@
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
-from django.urls import reverse
-from django.contrib import messages
 from .forms import PostForm, SellerForm
+from django.shortcuts import redirect
 
-# Create your views here.
+# Create your views here.def create_post(request):
 def create_post(request):
-    postForm = PostForm()
-    sellerForm = SellerForm()
     if request.method == 'POST':
-        form = PostForm(request.POST)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Mật khẩu của bạn đã được thay đổi.')
-            return HttpResponseRedirect(reverse('login'))
-    return render(request, 'create_post.html', {'postForm' : postForm, 'sellerForm' : sellerForm})
+        postForm = PostForm(request.POST)
+        sellerForm = SellerForm(request.POST)
+
+        if postForm.is_valid() and sellerForm.is_valid():
+            post = postForm.save()
+            seller = sellerForm.save()
+
+            post.author = request.user
+            post.save()
+            seller.post = post
+            seller.save()
+
+            return redirect('home') 
+    else:
+        postForm = PostForm()
+        sellerForm = SellerForm()
+
+    return render(request, 'create_post.html', {'postForm': postForm, 'sellerForm': sellerForm})

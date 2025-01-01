@@ -6,7 +6,7 @@ from django.contrib.auth.forms import AuthenticationForm
 
 class PostForm(forms.Form):
     CATEGORY_CHOICES = [
-        ('', '---Select Category---'),
+        ('', '---Select Product---'),
         ('car', 'Car'),
         ('motorcycle', 'Motorcycle'),
         ('truck', 'Truck'),
@@ -22,35 +22,21 @@ class PostForm(forms.Form):
     title = forms.CharField(label='Title', widget=forms.TextInput(attrs={
             'type': 'text',
             'class': 'post-form',
-            'placeholder': 'Title *'
-        })
-    )
-    
-    brand = forms.CharField(label='Brand', widget=forms.TextInput(attrs={
-            'type': 'text',
-            'class': 'post-form',
-            'placeholder': 'Brand *'
-        })
-    )
-    
-    status = forms.CharField(label='Status', widget=forms.TextInput(attrs={
-            'type': 'text',
-            'class': 'post-form',
-            'placeholder': 'Status *'
+            'placeholder': 'Title'
         })
     )
     
     price = forms.IntegerField(label='Price', widget=forms.NumberInput(attrs={
             'type': 'number',
             'class': 'post-form',
-            'placeholder': 'Price *'
+            'placeholder': 'Price'
         })
     )
     
     description = forms.CharField(label='Description', widget=forms.Textarea(attrs={
             'type': 'text',
             'class': 'post-form',
-            'placeholder': 'Description *',
+            'placeholder': 'Description',
             'maxlength': '300',
             'style': 'resize: vertical; max-height: 150px;',
         })
@@ -99,9 +85,3 @@ class SellerForm(forms.Form):
         })
     )
     
-    detailedAddress = forms.CharField(label='Detailed Address', widget=forms.TextInput(attrs={
-            'type': 'text',
-            'class': 'post-form',
-            'placeholder': 'Detailed address *'
-        })
-    )
