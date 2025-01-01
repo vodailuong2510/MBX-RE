@@ -15,7 +15,7 @@
             
     </div>
     <div class="banner-information">
-        <form method = "POST" class="post-form" id="postForm">
+        <form method="POST" class="post-form" id="postForm" enctype="multipart/form-data">
             {% csrf_token %}
             {% if form.errors %}
                     <p style="color: red;">Tên tài khoản hoặc mật khẩu của bạn không đúng!</p>
@@ -29,6 +29,7 @@
             {% endif %}
 
             <div class="form-label">Product details</div>
+            {{postForm.image}}
             {{postForm.product}}
             {{postForm.title}}
             {{postForm.price}}

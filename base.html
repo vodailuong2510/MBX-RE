@@ -37,7 +37,7 @@
             </div>
 
             <button class="create-post">
-              <a href="/"><img src="{% static 'images/create.png' %}" alt="Create"><p>Create Post</p></a>
+              <a href="{% url 'create post' %}"><img src="{% static 'images/create.png' %}" alt="Create"><p>Create Post</p></a>
             </button>    
 
             {% if user.username %}

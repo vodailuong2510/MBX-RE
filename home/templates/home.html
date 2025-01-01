@@ -10,14 +10,16 @@
 </div>
 <div class="banner-container" style="height: 428px; border-radius: 10px;">
     <h2>Feature products</h2>
-    <div class="products-container">
-        <div class="product">
-            <img src="{% static 'images/products1.png' %}" alt="Product 1">
-            <p>Red sports car with the sunset in the background</p>
-            <b>800.000.000 đ</b>
-            <p style="color: #9E9E9E">1m ago • HCM city</p>
+    {% for post in postForm %}
+        <div class="products-container">
+            <div class="shop">
+                <img src="{% static 'images/products1.png' %}" alt="Product 1">
+                <p>{{ post.title }}</p>
+                <b>{{ post.price }} đ</b>
+                <p style="color: #9E9E9E">1m ago • HCM city</p>
+            </div>
         </div>
-    </div>
+    {% endfor %}
     <div class="show-more">
         <a href="#">See more 69 posts</a>
         <img src="{% static 'images/chevron_right.png' %}" alt="Next" width="40">
