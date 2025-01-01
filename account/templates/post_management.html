@@ -36,7 +36,13 @@
                         <p style="color: #9E9E9E">Status: New</p>
                     </left>
                     <right>
-                        <img src="{% static 'images/more_vertical.png' %}" alt="More option" width="24">
+                        <div class="dropdown-container" tabindex="0">
+                            <img src="{% static 'images/more_horizontal.png' %}" alt="More option">
+                            <div class="dropdown-content">
+                                <a href="#">Edit</a>
+                                <a href="#">Delete</a>
+                            </div>
+                        </div>
                     </right>
                 </div>
             </div>

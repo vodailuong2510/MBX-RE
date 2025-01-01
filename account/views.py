@@ -105,4 +105,3 @@ def profile(request):
 
 def postManagement(request):
     return render(request, 'post_management.html')
-
