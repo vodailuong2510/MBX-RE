@@ -1,18 +1,19 @@
 from django import forms
-from django.contrib.auth.models import User
-from django.core.exceptions import ObjectDoesNotExist
-from django.utils.html import format_html
-from django.contrib.auth.forms import AuthenticationForm
+from .models import Post
 
-class PostForm(forms.Form):
-    CATEGORY_CHOICES = [
+class PostForm(forms.ModelForm):
+    class Meta:
+        model = Post
+        fields = ['image', 'product', 'title', 'price', 'description', 'province', 'district', 'ward']
+
+    product_choices = [
         ('', '---Select Product---'),
         ('car', 'Car'),
         ('motorcycle', 'Motorcycle'),
         ('truck', 'Truck'),
     ]
     
-    category = forms.ChoiceField(label='Category', choices=CATEGORY_CHOICES, widget=forms.Select(attrs={
+    product = forms.ChoiceField(label='Category', choices=product_choices, widget=forms.Select(attrs={
             'type': 'text',
             'class': 'post-form',
             'placeholder': 'Post category'
@@ -42,9 +43,8 @@ class PostForm(forms.Form):
         })
     )
     
-class SellerForm(forms.Form):
     PROVINCE_CHOICES = [
-        ('', '---Select Province---'),
+        ('', '---Select Province/City---'),
         ('hanoi', 'Hanoi'),
         ('hochiminh', 'Ho Chi Minh City'),
         ('danang', 'Da Nang'),
@@ -67,21 +67,21 @@ class SellerForm(forms.Form):
     province = forms.ChoiceField(label='Province', choices=PROVINCE_CHOICES, widget=forms.Select(attrs={
             'type': 'text',
             'class': 'post-form',
-            'placeholder': 'Province/City *'
+            'placeholder': 'Province/City'
         })
     )
     
     district = forms.ChoiceField(label='District', choices=DISTRICT_CHOICES, widget=forms.Select(attrs={
             'type': 'text',
             'class': 'post-form',
-            'placeholder': 'District *'
+            'placeholder': 'District'
         })
     )
     
     ward = forms.ChoiceField(label='Ward', choices=WARD_CHOICES, widget=forms.Select(attrs={
             'type': 'text',
             'class': 'post-form',
-            'placeholder': 'Ward *'
+            'placeholder': 'Ward'
         })
     )
     

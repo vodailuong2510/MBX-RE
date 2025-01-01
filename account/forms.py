@@ -130,6 +130,9 @@ class change_passwordForm(forms.Form):
 
         if new_password and len(rePassword) < 8:
             raise forms.ValidationError('Invalid password')
+        
+        if new_password == old_password:
+            raise forms.ValidationError('The new password must not be the same as the old password')
 
         if new_password and rePassword and new_password != rePassword:
             raise forms.ValidationError('Your passwords do not match')

@@ -28,17 +28,15 @@
                 {% endfor %}
             {% endif %}
 
-            {{postForm.category}}
             <div class="form-label">Product details</div>
+            {{postForm.product}}
             {{postForm.title}}
-            {{postForm.brand}}
-            {{postForm.status}}
             {{postForm.price}}
             {{postForm.description}}
             <div class="form-label">Seller details</div>
-            {{sellerForm.province}}
-            {{sellerForm.district}}
-            {{sellerForm.ward}}
+            {{postForm.province}}
+            {{postForm.district}}
+            {{postForm.ward}}
             <input type = 'hidden'/>
         </form>
     </div>
