@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with {{ receiver.username }}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+<div class="container mt-4">
+    <h2>Chat with {{ receiver.username }}</h2>
+    <div class="chat-box" style="height: 400px; overflow-y: scroll; border: 1px solid #ddd; padding: 10px;">
+        {% for message in messages %}
+            <div class="{% if message.sender == request.user %}text-end{% else %}text-start{% endif %}">
+                <strong>{{ message.sender.username }}:</strong>
+                <p>{{ message.content }}</p>
+                <small>{{ message.timestamp|date:"H:i, d M Y" }}</small>
+            </div>
+            <hr>
+        {% empty %}
+            <p>No messages yet.</p>
+        {% endfor %}
+    </div>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Send</button>
+    </form>
+</div>
+</body>
+</html>

@@ -109,7 +109,7 @@ class ResetPasswordForm(forms.Form):
         if new_password and rePassword and new_password != rePassword:
             raise forms.ValidationError('Your passwords do not match')
         
-        return rePassword
+        return new_password
 
 class change_passwordForm(forms.Form):
     old_password = forms.CharField(label = "Old Password", widget=forms.PasswordInput(attrs={'placeholder': 'Old Password'}))
@@ -137,4 +137,4 @@ class change_passwordForm(forms.Form):
         if new_password and rePassword and new_password != rePassword:
             raise forms.ValidationError('Your passwords do not match')
 
-        return rePassword
+        return new_password

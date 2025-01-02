@@ -85,3 +85,14 @@ class PostForm(forms.ModelForm):
         })
     )
     
+    def clean(self):
+        price = self.cleaned_data['price']
+        description = self.cleaned_data['description']
+
+        if not isinstance(price, (int, float)) or price < 0:
+            raise forms.ValidationError('The price must be a number and cannot be less than 0')
+        
+        if len(description) < 50:
+            raise forms.ValidationError('The description must contain at least 50 characters')
+        
+        return self.cleaned_data

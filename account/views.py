@@ -51,7 +51,7 @@ def forgot_password(request):
             
             reset_url = request.build_absolute_uri(reverse('reset_password', args=[token]))
 
-            subject = 'Reset Your Password'
+            subject = 'MBX: Reset Your Password'
             message = render_to_string('reset_password_email.html', {
                 'reset_url': reset_url,
                 'user': user,
@@ -76,10 +76,13 @@ def reset_password(request, token):
     if request.method == 'POST':
         form = ResetPasswordForm(request.POST)
         if form.is_valid():
-            new_password = form.cleaned_data['new_password']
+            new_password = form.cleaned_data
             user.set_password(new_password)
-            form.save()  
- 
+            user.save()
+
+            auth_login(request, user)
+
+            return redirect('home')
     else:
         form = ResetPasswordForm()
 
@@ -90,10 +93,13 @@ def change_password(request):
     if request.method == 'POST':
         form = change_passwordForm(request.POST, request=request)
         if form.is_valid():
-            new_password = form.cleaned_data['new_password']
+            new_password = form.cleaned_data
             user = request.user
             user.set_password(new_password)
             user.save()
+
+            auth_login(request, user)
+
             return redirect('home')
     else:
         form = change_passwordForm()

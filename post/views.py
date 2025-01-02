@@ -9,7 +9,7 @@ def create_post(request):
         postForm = PostForm(request.POST, request.FILES)
 
         if postForm.is_valid():
-            post = postForm.save(commit=False)
+            post = postForm.save()
 
             post.user = request.user
             post.save()
