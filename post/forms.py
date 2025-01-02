@@ -39,13 +39,13 @@ class PostForm(forms.ModelForm):
             'class': 'post-form',
             'placeholder': 'Description',
             'maxlength': '300',
-            'style': 'resize: vertical; max-height: 150px;',
+            'style': 'resize: vertical; max-height: 150px; min-height: 48px;',
         })
     )
     
     PROVINCE_CHOICES = [
         ('', '---Select Province/City---'),
-        ('hanoi', 'Hanoi'),
+        ('hanoi', 'Ha Noi'),
         ('hochiminh', 'Ho Chi Minh City'),
         ('danang', 'Da Nang'),
     ]
