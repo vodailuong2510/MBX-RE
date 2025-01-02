@@ -372,17 +372,24 @@ hr {
 
 .products-container {
   display: flex;
+  flex-wrap: nowrap;
   flex-direction: row;
-  justify-content: center;
-  align-items: start;
-  text-align: center;
   width: 930px;
   background-color: #ffffff;
   margin: 0 auto 14px auto;
+  overflow-x: auto;
+  overflow-y: hidden;
+  border-radius: 5px;
+  border: #E0E0E0 1px solid;
+}
+
+.products-container::-webkit-scrollbar {
+  display: none;
 }
 
 .show-more {
   display: flex;
+  flex: 0 0 auto;
   justify-content: center;
   align-items: center;
   height: 50px;
