@@ -67,6 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'chat.context_processors.chat_partners',
             ],
         },
     },
@@ -140,3 +141,4 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'vodailuong2004@gmail.com'  
 EMAIL_HOST_PASSWORD = 'pxox uchw zeum yiqy'  
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+

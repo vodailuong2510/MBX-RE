@@ -29,8 +29,21 @@
             </div>
           </div>
 
-            <div class="icon"><img src="{% static 'images/notification_button.png' %}" alt="Notification"></div> 
-            <div class="icon"><img src="{% static 'images/chat_button.png' %}" alt="Chat"></div> 
+            <div class="icon"><img src="{% static 'images/notification_button.png' %}" alt="Notification"></div>
+            <div class="icon chat-dropdown">
+              <div class="icon"><img src="{% static 'images/chat_button.png' %}" alt="Chat"></div>
+              <div class="dropdown-content">
+                  {% if chat_partners %}
+                      {% for partner in chat_partners %}
+                          <a href="javascript:void(0);" class="chat-link" data-partner="{{ partner.username }}">
+                              {{ partner.username }}
+                          </a>
+                      {% endfor %}
+                  {% else %}
+                      <p>No chats available</p>
+                  {% endif %}
+                </div>
+            </div>
 
             <div class="actions">
               <a href="/"><img src="{% static 'images/list_icon.png' %}" alt="List"><p>Manage Post</p></a>
@@ -72,6 +85,21 @@
             {% endif %}
         </header>
 
+  <!-- Chat Popup Window -->
+  <div id="chat-popup" class="chat-popup">
+      <div class="chat-header">
+          <span id="chat-partner-name"></span>
+          <button id="close-chat" class="close-btn">X</button>
+      </div>
+      <div id="chat-messages" class="chat-messages">
+          <!-- Messages will be loaded dynamically -->
+      </div>
+      <form id="chat-form">
+          <textarea id="chat-input" placeholder="Type a message..."></textarea>
+          <button type="submit">Send</button>
+      </form>
+  </div>
+  
 {% block content %}
 {% endblock %}
 
@@ -109,3 +137,67 @@
 
 </body>
 </html>
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const chatLinks = document.querySelectorAll('.chat-link');
+    const chatPopup = document.getElementById('chat-popup');
+    const chatPartnerName = document.getElementById('chat-partner-name');
+    const closeChatBtn = document.getElementById('close-chat');
+    const chatMessagesContainer = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const chatForm = document.getElementById('chat-form');
+
+    chatLinks.forEach(function (link) {
+        link.addEventListener('click', function (event) {
+            const partnerUsername = event.target.getAttribute('data-partner');
+            openChat(partnerUsername);
+        });
+    });
+
+    function openChat(partnerUsername) {
+        chatPartnerName.textContent = partnerUsername;
+        chatPopup.style.display = 'flex';
+        loadMessages(partnerUsername);
+    }
+
+    closeChatBtn.addEventListener('click', function () {
+        chatPopup.style.display = 'none';
+    });
+
+    function loadMessages(partnerUsername) {
+        fetch(`chat/get_messages/${partnerUsername}/`)
+            .then(response => response.json())
+            .then(data => {
+                const messages = data.messages;
+                chatMessagesContainer.innerHTML = '';
+                messages.forEach(message => {
+                    const messageElement = document.createElement('div');
+                    messageElement.innerHTML = `
+                        <strong>${message.sender}</strong>: ${message.content}
+                    `;
+                    chatMessagesContainer.appendChild(messageElement);
+                });
+            })
+            .catch(error => {
+                console.error('Error loading messages:', error);
+            });
+    }
+
+    chatForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+        const message = chatInput.value.trim();
+        if (message) {
+            sendMessage(message);
+            chatInput.value = '';
+        }
+    });
+
+    function sendMessage(message) {
+        const partnerUsername = chatPartnerName.textContent;
+        chatMessagesContainer.innerHTML += `
+            <div><strong>You</strong>: ${message}</div>
+        `;
+    }
+});
