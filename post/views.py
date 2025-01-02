@@ -2,8 +2,11 @@ from django.shortcuts import render
 from .forms import PostForm
 from django.shortcuts import redirect
 from .models import Post
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.def create_post(request):
+@login_required
 def create_post(request):
     if request.method == 'POST':
         postForm = PostForm(request.POST, request.FILES)
@@ -18,3 +21,8 @@ def create_post(request):
         postForm = PostForm()
 
     return render(request, 'create_post.html', {'postForm': postForm})
+
+def view_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    return render(request, 'view_post.html', {'post': post})

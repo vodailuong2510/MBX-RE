@@ -12,12 +12,12 @@
     <h2>Feature products</h2>
     <div class="products-container">
         {% for post in posts %}
-        <div class="product">
+        <a href="{% url 'view post' post.id %}">
             <img src="{% static 'images/products1.png' %}" alt="Product 1">
             <p>{{ post.title }}</p>
             <b>{{ post.price }} đ</b>
-            <p style="color: #9E9E9E">1m ago • HCM city</p>
-        </div>
+            <p style="color: #9E9E9E">{{ post.created_at|timesince }} ago • {{ post.province }}</p>
+        </a>
         {% endfor %}
     </div>
     <div class="show-more">
