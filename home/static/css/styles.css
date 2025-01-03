@@ -157,7 +157,7 @@ body {
 }
 
 .create-post:hover {
-  background-color: #FFAF00;
+  background-color: rgb(255, 175, 0, 0.9);
 }
 
 .no-account {
@@ -572,14 +572,15 @@ hr {
   cursor: pointer;
   transition: background-color 0.3s ease;
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .custom-button:hover {
-  background-color: #0056b3;
+  background-color: rgb(255, 175, 0, 0.7);
 }
 
 .custom-button:active {
-  background-color: #003d80;
+  background-color: rgb(255, 175, 0, 0.8);
 }
 
 .login-form input[type="text"],
@@ -610,6 +611,10 @@ hr {
   color: #808080;
 }
 
+.form-options a:hover {
+  color: #F8B400;
+}
+
 .form-options label {
   display: flex; 
   align-items: center;
@@ -638,11 +643,11 @@ hr {
 }
 
 .sub-button:hover {
-  background-color: #0056b3;
+  background-color: #FCE199;
 }
 
 .sub-button:active {
-  background-color: #003d80;
+  background-color: rgb(253, 220, 128);
 }
 
 /*Post Management Page*/
@@ -693,6 +698,12 @@ hr {
   border-radius: 0px;
   border: #E0E0E0 1px solid;
   margin: auto;
+  cursor: pointer;
+}
+
+.product:hover {
+  box-shadow: 0px 0px 14px 2px rgba(0,0,0,0.2);
+  z-index: 1;
 }
 
 .product img {
@@ -761,9 +772,22 @@ hr {
   text-align: center;
   width: 473px;
   height: 48px;
-  border: 1px solid #000000;
   border-radius: 0px;
   margin: 0 auto 20px auto;
+  font-size: 16px;
+}
+
+.type-container a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 236px;
+  height: 48px;
+  background-color: none;
+  color: #000000;
+  text-decoration: none;
+  border-bottom: none;
 }
 
 .product-details {

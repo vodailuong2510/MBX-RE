@@ -10,6 +10,7 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.contrib.auth.decorators import login_required
+from post.models import Post
 
 # Create your views here.
 
@@ -110,4 +111,5 @@ def profile(request):
     return render(request, 'profile.html')
 
 def postManagement(request):
-    return render(request, 'post_management.html')
+    posts = Post.objects.all()
+    return render(request, 'post_management.html', {'posts': posts})

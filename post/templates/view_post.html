@@ -11,22 +11,32 @@
         <p style="font-size:18px;"><span class="title">12.345</span> new used cars with good prices updated 11/11/2024 </p>
         <div class="view-post">
             <div class="product-view">
-                <div class="banner-container" style="width:648px; height: 411px; border-radius: 10px; margin:0 0 10px 0;">Chỗ để ảnh</div>
-                <div class="banner-container" style="width:648px; height: 104px; border-radius: 10px; margin:0 0 10px 0;">Chỗ để ảnh</div>
+                <div class="banner-container" style="width:648px; height: 411px; border-radius: 10px; margin:0 0 10px 0; background-color: #000000; box-shadow: none;">
+                    <img src="{{ post.image.url }}" alt="Product image" style="height:401px; border-radius: 10px; margin:5px auto;">
+                </div>
+                <div class="banner-container" style="width:648px; height: 104px; border-radius: 10px; margin:0 0 10px 0; background:none; box-shadow: none; flex-direction: row;">
+                    <img src="{{ post.image.url }}" alt="Product image" style="height:104px; border-radius: 10px; margin-right:5px; border: 1px solid #ddd;">
+                    <img src="{{ post.image.url }}" alt="Product image" style="height:104px; border-radius: 10px; margin-right:5px; border: 1px solid #ddd;">
+                    <img src="{{ post.image.url }}" alt="Product image" style="height:104px; border-radius: 10px; margin-right:5px; border: 1px solid #ddd;">
+                </div>
                 <div class="banner-container" style="width:648px; height: fit-content; border-radius: 10px; margin:0 0 10px 0;"> 
                     <h2 style="padding:0px; margin-left:29px;">Description</h2>
-                    <p style="padding:0px; margin-left:29px;">{{ post.description }}</p>
+                    <p style="padding:29px; overflow-wrap: break-word; width: 648px; box-sizing: border-box;">{{ post.description }}</p>
                 </div>
             </div>
             <div class="seller-view">
-                <div class="banner-container" style="width:312px; height: 200px; border-radius: 10px; margin:0 0 10px 0; justify-content: start;">
+                <div class="banner-container" style="width:312px; height: fit-content; border-radius: 10px; margin:0 0 10px 0; justify-content: start; padding-bottom: 20px;">
                     <h2 style="padding:0px; margin-left:29px;">{{ post.title }}</h2>
-                    <b style="padding:0px; margin-left:29px; color: #FF9800">{{ post.price }} đ</b>
-                    <p style="padding:0px; margin-left:29px;"> {{ post.ward }} • {{ post.district }} • {{ post.province }}</p>
-                    <p style="padding:0px; margin-left:29px; color: #9E9E9E">{{ post.created_at|timesince }}</p>
-                    <a href="javascript:void(0);" class="chat-link" data-partner="{{ post.user.username }}">
-                        chat with seller
-                    </a>
+                    <b style="padding:0px; margin: 5px 29px; color: #FF9800; font-size: 20px;">{{ post.price }} đ</b>
+                    <p style="padding:0px; margin-left:29px; color: #616161; display:flex;">
+                        <img src="{% static 'images/marker_pin.png' %}" alt="Pin" width="19" height="19" style="margin-right:5px;"> 
+                        Address: {{ post.ward }} • {{ post.district }} • {{ post.province }}
+                    </p>
+                    <p style="padding:0px; margin-left:29px; color: #616161; display:flex;">
+                        <img src="{% static 'images/clock.png' %}" alt="Clock" width="19" height="19" style="margin-right:5px;"> 
+                        Posted: {{ post.created_at|timesince }} ago
+                    </p>
+                    <button class="custom-button" style="width: 250px; height: 45px; margin: auto;">Chat with seller</button>
                 </div>
             </div>
         </div>

@@ -26,3 +26,18 @@ def view_post(request, post_id):
     post = get_object_or_404(Post, id=post_id)
 
     return render(request, 'view_post.html', {'post': post})
+
+def edit_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+
+    if request.method == 'POST':
+        postForm = PostForm(request.POST, request.FILES, instance=post)
+
+        if postForm.is_valid():
+            post = postForm.save()
+            post.save()
+            return redirect('home')
+    else:
+        postForm = PostForm(instance=post)
+
+    return render(request, 'edit_post.html', {'postForm': postForm})
