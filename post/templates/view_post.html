@@ -36,7 +36,9 @@
                         <img src="{% static 'images/clock.png' %}" alt="Clock" width="19" height="19" style="margin-right:5px;"> 
                         Posted: {{ post.created_at|timesince }} ago
                     </p>
-                    <button class="custom-button" style="width: 250px; height: 45px; margin: auto;">Chat with seller</button>
+                    <a href="javascript:void(0);" class="chat-link" data-partner="{{ post.user.username }}">
+                        chat with seller
+                    </a>
                 </div>
             </div>
         </div>

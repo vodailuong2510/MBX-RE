@@ -167,7 +167,7 @@
       });
   
       function loadMessages(partnerUsername) {
-          fetch(`chat/get_messages/${partnerUsername}/`)
+          fetch(`/chat/get_messages/${partnerUsername}/`)
               .then(response => response.json())
               .then(data => {
                   const messages = data.messages;
