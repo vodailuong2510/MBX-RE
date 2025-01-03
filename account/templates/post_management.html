@@ -13,9 +13,6 @@
             <div class="actions">
                 <a href="#" style="color: #F8B400; font-weight:bold;"><img src="{% static 'images/bag_icon.png' %}" alt="Post management"><p style="margin-left: 12px;">Post management</p></a>
             </div>
-            <div class="actions">
-                <a href="#"><img src="{% static 'images/cart_icon.png' %}" alt="Order management"><p style="margin-left: 12px;">Order management</p></a>
-            </div>
         </div>
         <div class="banner-container" style="height: fit-content; width: 732px; border-radius: 10px; margin: 0px 0px auto auto; justify-content: start; padding-bottom: 20px;">
             <h2>Post management</h2>
@@ -30,17 +27,21 @@
                 <img src="{{ post.image.url }}" alt="Product image" style="margin:9px; width: auto; height: 187px;" onclick="location.href='{% url 'view post' post.id %}'">
                 <div class="product-details">
                     <left onclick="location.href='{% url 'view post' post.id %}'">
-                        <p>{{ post.title }}</p>
-                        <p>Category: {{ post.product }}</p>
-                        <b>{{ post.price }} đ</b>
-                        <p style="color: #9E9E9E">Created: {{ post.created_at|timesince }} ago</p>
+                        {% if post.user == request.user %}
+                            <p>{{ post.title }}</p>
+                            <p>Category: {{ post.product }}</p>
+                            <b>{{ post.price }} đ</b>
+                            <p style="color: #9E9E9E">Created: {{ post.created_at|timesince }} ago</p>
+                        {% else %}
+                            <p>No post available</p>
+                        {% endif %}
                     </left>
                     <right>
                         <div class="dropdown-container" tabindex="0">
                             <img src="{% static 'images/more_horizontal.png' %}" alt="More option">
                             <div class="dropdown-content">
                                 <a href="{% url 'edit post' post.id %}">Edit</a>
-                                <a href="#">Delete</a>
+                                <a href="{% url 'delete post' post.id %}">Delete</a>
                             </div>
                         </div>
                     </right>

@@ -1026,3 +1026,54 @@ hr {
   background-color: rgb(255, 175, 0, 0.8);
 }
 
+.modal {
+  display: none;  /* Ẩn modal khi không sử dụng */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+  z-index: 1000;  
+  justify-content: center; 
+  align-items: center;    
+  display: flex;           
+}
+
+/* Nội dung modal */
+.modal-content {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  width: 400px; 
+  text-align: center;
+}
+
+/* Style for the buttons */
+.delete-button, .cancel-button {
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  margin: 10px 5px;
+  transition: all 0.3s ease;
+}
+
+.delete-button {
+  background-color: red;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #ccc;
+  color: black;
+}
+
+.delete-button:hover {
+  background-color: darkred;
+}
+
+.cancel-button:hover {
+  background-color: #aaa;
+}

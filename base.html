@@ -30,7 +30,7 @@
           </div>
 
             <div class="icon"><img src="{% static 'images/notification_button.png' %}" alt="Notification"></div>
-            <div class="icon chat-dropdown">
+            <div class="chat-dropdown">
               <div class="icon"><img src="{% static 'images/chat_button.png' %}" alt="Chat"></div>
               <div class="dropdown-content">
                   {% if chat_partners %}
@@ -42,7 +42,7 @@
                   {% else %}
                       <p>No chats available</p>
                   {% endif %}
-                </div>
+              </div>
             </div>
 
             <div class="actions">
@@ -85,7 +85,7 @@
       </div>
       <form id="chat-form">
           <textarea id="chat-input" placeholder="Type a message..."></textarea>
-          <button type="submit">Send</button>
+          <button style="background-color: #FAD266; color: black;" type="submit">Send</button>
       </form>
   </div>
   

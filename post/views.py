@@ -41,3 +41,16 @@ def edit_post(request, post_id):
         postForm = PostForm(instance=post)
 
     return render(request, 'edit_post.html', {'postForm': postForm})
+
+@login_required
+def delete_post(request, id):
+    if request.method == "POST":
+        post = get_object_or_404(Post, id=id)
+
+        if post.user == request.user:
+            print("haha")
+            post.delete() 
+
+        return redirect('post management')
+    
+    return render(request, 'delete_post.html')
