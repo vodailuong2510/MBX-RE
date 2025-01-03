@@ -58,19 +58,8 @@
                 <a href="{% url 'profile'%}"><img src="{% static 'images/user_icon.png' %}" alt="Account"><p>{{request.user.username}}</p></a>
                 <div class="dropdown-content">
                   <a href="{% url 'profile'%}">Profile</a>
-  
-                  <group-title>Order management</group-title>
-                  <a href='#'>Purchase order</a>
-                  <a href='#'>Sales order</a>
-  
-                  <group-title>Utility</group-title>
                   <a href='#'>Saved post</a>
-                  <a href='#'>Saved search</a>
-  
-                  <group-title>Other</group-title>
                   <a href='#'>Setting</a>
-                  <a href='#'>Help</a>
-                  <a href='#'>Feedback</a>
                   <a href="{% url 'change_password' %}">Change password</a>
                   <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none">
                     {% csrf_token %}
