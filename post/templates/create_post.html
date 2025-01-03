@@ -9,23 +9,26 @@
     <div class="banner-image">
         <h2 style="padding:0px;">Images and videos</h2>
         <div class="image-container">
-            <img src="{% static 'images/img_add_icon.png' %}" alt="Add image" width="84">
-            <p>Upload up to 6 photos and/or maximum 1 video</p>
+            <img id="addImageIcon" src="{% static 'images/img_add_icon.png' %}" alt="Add image" width="84">
+            <p id="uploadText">Upload up to 6 photos and/or maximum 1 video</p>
+            <div id="imagePreview" style="margin-top: 10px; display: none; width: 200px; height: 200px;">
+                <img id="previewImage" src="" alt="Image Preview" />
+            </div>
         </div>
-            
     </div>
     <div class="banner-information">
         <form method="POST" class="post-form" id="postForm" enctype="multipart/form-data">
             {% csrf_token %}
             {% if form.errors %}
-                    <p style="color: red;">Tên tài khoản hoặc mật khẩu của bạn không đúng!</p>
-            {% endif %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+                <div style="color: red; text-align: left; margin-bottom: 10px;">
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        {% for error in form.errors.values %}
+                            {% for message in error %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
 
             <div class="form-label">Product details</div>
@@ -46,6 +49,27 @@
     <button class="sub-button" style="width: 277px; height: 45px; margin: 0;">Preview</button>
     <input type="submit" form="postForm" value="Post" class="custom-button" style="width: 277px; height: 45px;" />
 </div>
+
+<script>
+document.getElementById("id_image").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const previewImage = document.getElementById("previewImage");
+            const uploadText = document.getElementById("uploadText");
+            const addImageIcon = document.getElementById("addImageIcon");
+
+            previewImage.src = e.target.result; // Set the preview image source
+            document.getElementById("imagePreview").style.display = "block"; // Show the preview
+            uploadText.style.display = "none"; // Hide the upload text
+            addImageIcon.style.display = "none"; // Hide the add image icon
+        };
+        reader.readAsDataURL(file); // Read the selected file as a data URL
+    }
+});
+</script>
+
 {% endblock %}
 
 {% block footer %}{% endblock %}

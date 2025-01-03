@@ -9,23 +9,25 @@
     <div class="banner-image">
         <h2 style="padding:0px;">Images and videos</h2>
         <div class="image-container">
-            <img src="{% static 'images/img_add_icon.png' %}" alt="Add image" width="84">
-            <p>Upload up to 6 photos and/or maximum 1 video</p>
+            <img id="addImageIcon" src="{{post.image.url}}" alt="Add image" width="200">
+            <div id="imagePreview" style="margin-top: 10px; display: none; width: 200px; height: 200px;">
+                <img id="previewImage" src="" alt="Image Preview" />
+            </div>
         </div>
-            
     </div>
     <div class="banner-information">
         <form method="POST" class="post-form" id="postForm" enctype="multipart/form-data">
             {% csrf_token %}
             {% if form.errors %}
-                    <p style="color: red;">Tên tài khoản hoặc mật khẩu của bạn không đúng!</p>
-            {% endif %}
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }}">
-                        {{ message }}
-                    </div>
-                {% endfor %}
+                <div style="color: red; text-align: left; margin-bottom: 10px;">
+                    <ul style="list-style: none; padding: 0; margin: 0;">
+                        {% for error in form.errors.values %}
+                            {% for message in error %}
+                                <li>{{ message }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
             {% endif %}
 
             <div class="form-label">Product details</div>
@@ -47,6 +49,33 @@
     <button class="sub-button" style="width: 277px; height: 45px; margin: 0;">Cancel</button>
     <input type="submit" form="postForm" value="Confirm change" class="custom-button" style="width: 277px; height: 45px;" />
 </div>
+
+<script>
+document.getElementById("id_image").addEventListener("change", function(event) {
+    const file = event.target.files[0];
+    const previewContainer = document.getElementById("imagePreview");
+    const addImageIcon = document.getElementById("addImageIcon");
+    
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const previewImage = document.getElementById("previewImage");
+
+            // Hiển thị ảnh mới trong preview
+            previewImage.src = e.target.result;
+            previewContainer.style.display = "block";  // Hiển thị phần preview ảnh mới
+
+            addImageIcon.style.display = "none";  // Ẩn biểu tượng thêm ảnh
+        };
+        reader.readAsDataURL(file);  // Đọc file đã chọn và hiển thị trong preview
+    } else {
+        // Nếu không có ảnh mới, ảnh cũ sẽ vẫn được hiển thị.
+        previewContainer.style.display = "none";  // Ẩn phần preview ảnh mới
+        addImageIcon.style.display = "block";  // Hiển thị lại biểu tượng thêm ảnh
+    }
+});
+    </script>
+    
 {% endblock %}
 
 {% block footer %}{% endblock %}

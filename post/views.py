@@ -40,7 +40,7 @@ def edit_post(request, post_id):
     else:
         postForm = PostForm(instance=post)
 
-    return render(request, 'edit_post.html', {'postForm': postForm})
+    return render(request, 'edit_post.html', {'postForm': postForm, 'post': post})
 
 @login_required
 def delete_post(request, id):

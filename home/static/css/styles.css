@@ -1077,3 +1077,9 @@ hr {
 .cancel-button:hover {
   background-color: #aaa;
 }
+
+#previewImage {
+  width: 100%;          /* Đảm bảo ảnh chiếm toàn bộ chiều rộng khung */
+  height: 100%;         /* Đảm bảo ảnh chiếm toàn bộ chiều cao khung */
+  object-fit: cover;    /* Đảm bảo ảnh lấp đầy khung mà không bị bóp méo */
+}
