@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Create post{% endblock %}
+{% block title %}Edit post{% endblock %}
 
 {% block content %}
 <div class="banner-container" style="height: fit-content; border-radius: 10px; margin-top: 20px; flex-direction: row; padding-bottom: 60px;">
@@ -44,7 +44,8 @@
 </div>
 <div class="submit-banner">
     <button class="sub-button" style="width: 277px; height: 45px; margin: 0;">Preview</button>
-    <input type="submit" form="postForm" value="Post" class="custom-button" style="width: 277px; height: 45px;" />
+    <button class="sub-button" style="width: 277px; height: 45px; margin: 0;">Cancel</button>
+    <input type="submit" form="postForm" value="Confirm change" class="custom-button" style="width: 277px; height: 45px;" />
 </div>
 {% endblock %}
 

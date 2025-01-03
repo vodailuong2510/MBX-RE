@@ -46,7 +46,7 @@
             </div>
 
             <div class="actions">
-              <a href="/"><img src="{% static 'images/list_icon.png' %}" alt="List"><p>Manage Post</p></a>
+              <a href="{% url 'post management'%}"><img src="{% static 'images/list_icon.png' %}" alt="List"><p>Manage Post</p></a>
             </div>
 
             <button class="create-post">
@@ -55,9 +55,9 @@
 
             {% if user.username %}
               <div class="account">
-                <a href="/"><img src="{% static 'images/user_icon.png' %}" alt="Account"><p>{{request.user.username}}</p></a>
+                <a href="{% url 'profile'%}"><img src="{% static 'images/user_icon.png' %}" alt="Account"><p>{{request.user.username}}</p></a>
                 <div class="dropdown-content">
-                  <a href='#'>Profile</a>
+                  <a href="{% url 'profile'%}">Profile</a>
   
                   <group-title>Order management</group-title>
                   <a href='#'>Purchase order</a>
@@ -71,11 +71,11 @@
                   <a href='#'>Setting</a>
                   <a href='#'>Help</a>
                   <a href='#'>Feedback</a>
-                  <a href="{% url 'change_password' %}"><p>Change password</p></a>
+                  <a href="{% url 'change_password' %}">Change password</a>
                   <form id="logout-form" action="{% url 'logout' %}" method="post" style="display:none">
                     {% csrf_token %}
                   </form>
-                  <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">Logout</a>
+                  <a href="#" style="color: red; font-weight:bold;" onclick="document.getElementById('logout-form').submit(); return false;">Logout</a>
                 </div>
               </div>
             {% else %}  
@@ -118,7 +118,7 @@
           <h3>SOCIAL</h3>
           <div class="social-icons">
             <a href="#"><img src="https://img.icons8.com/ios-filled/50/facebook.png" alt="Facebook"></a>
-            <a href="#"><img src="https://img.icons8.com/ios-filled/50/twitter.png" alt="Twitter"></a>
+            <a href="#"><img src="https://img.icons8.com/?size=100&id=fJp7hepMryiw&format=png&color=000000" alt="Twitter"></a>
           </div>
         </div>
       </div>
