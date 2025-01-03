@@ -1,11 +1,10 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.db import models
 from .models import Message
-from .forms import MessageForm
 from django.contrib.auth.models import User
 from django.http import JsonResponse
-from django.views.decorators.http import require_GET, require_POST
+from django.views.decorators.http import require_GET
+from django.views.decorators.csrf import csrf_exempt
+import json
 # Create your views here.
 
 
@@ -26,3 +25,21 @@ def get_messages(request, username):
         })
     
     return JsonResponse({'messages': message_list})
+
+@csrf_exempt
+def send_message(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            sender = request.user
+            receiver_username = data['receiver']
+            content = data['content']
+
+            receiver = User.objects.get(username=receiver_username)
+
+            Message.objects.create(sender=sender, receiver=receiver, content=content)
+
+            return JsonResponse({'success': True})
+        except Exception as e:
+            return JsonResponse({'success': False, 'error': str(e)})
+    return JsonResponse({'success': False, 'error': 'Invalid request method'})

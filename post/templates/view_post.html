@@ -24,10 +24,113 @@
                     <b style="padding:0px; margin-left:29px; color: #FF9800">{{ post.price }} đ</b>
                     <p style="padding:0px; margin-left:29px;"> {{ post.ward }} • {{ post.district }} • {{ post.province }}</p>
                     <p style="padding:0px; margin-left:29px; color: #9E9E9E">{{ post.created_at|timesince }}</p>
-                    <button class="custom-button" style="width: 275px; height: 45px; margin: 29px;">Chat with seller</button>
+                    <a href="javascript:void(0);" class="chat-link" data-partner="{{ post.user.username }}">
+                        chat with seller
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 
+      <!-- Chat Popup Window -->
+  <div id="chat-popup" class="chat-popup">
+    <div class="chat-header">
+        <span id="chat-partner-name"></span>
+        <button id="close-chat" class="close-btn">X</button>
+    </div>
+    <div id="chat-messages" class="chat-messages">
+        <!-- Messages will be loaded dynamically -->
+    </div>
+    <form id="chat-form">
+        <textarea id="chat-input" placeholder="Type a message..."></textarea>
+        <button type="submit">Send</button>
+    </form>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const chatLinks = document.querySelectorAll('.chat-link');
+        const chatPopup = document.getElementById('chat-popup');
+        const chatPartnerName = document.getElementById('chat-partner-name');
+        const closeChatBtn = document.getElementById('close-chat');
+        const chatMessagesContainer = document.getElementById('chat-messages');
+        const chatInput = document.getElementById('chat-input');
+        const chatForm = document.getElementById('chat-form');
+    
+        chatLinks.forEach(function (link) {
+            link.addEventListener('click', function (event) {
+                const partnerUsername = event.target.getAttribute('data-partner');
+                openChat(partnerUsername);
+            });
+        });
+    
+        function openChat(partnerUsername) {
+            chatPartnerName.textContent = partnerUsername;
+            chatPopup.style.display = 'flex';
+            loadMessages(partnerUsername);
+        }
+    
+        closeChatBtn.addEventListener('click', function () {
+            chatPopup.style.display = 'none';
+        });
+    
+        function loadMessages(partnerUsername) {
+            fetch(`/chat/get_messages/${partnerUsername}/`)
+                .then(response => response.json())
+                .then(data => {
+                    const messages = data.messages;
+                    chatMessagesContainer.innerHTML = '';
+                    messages.forEach(message => {
+                        const messageElement = document.createElement('div');
+                        messageElement.innerHTML = `
+                            <strong>${message.sender}</strong>: ${message.content}
+                        `;
+                        chatMessagesContainer.appendChild(messageElement);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading messages:', error);
+                });
+        }
+    
+        chatForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const message = chatInput.value.trim();
+            if (message) {
+                sendMessage(message);
+                chatInput.value = '';
+            }
+        });
+    
+        function sendMessage(message) {
+            const partnerUsername = chatPartnerName.textContent;
+            fetch('/chat/send_message/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+                },
+                body: JSON.stringify({
+                    receiver: partnerUsername,
+                    content: message
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    chatMessagesContainer.innerHTML += `
+                        <div><strong>You</strong>: ${message}</div>
+                    `;
+                } else {
+                    console.error('Error sending message:', data.error);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    });
+</script>
+
 {% endblock %}
+

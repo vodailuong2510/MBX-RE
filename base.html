@@ -140,64 +140,87 @@
 
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-    const chatLinks = document.querySelectorAll('.chat-link');
-    const chatPopup = document.getElementById('chat-popup');
-    const chatPartnerName = document.getElementById('chat-partner-name');
-    const closeChatBtn = document.getElementById('close-chat');
-    const chatMessagesContainer = document.getElementById('chat-messages');
-    const chatInput = document.getElementById('chat-input');
-    const chatForm = document.getElementById('chat-form');
-
-    chatLinks.forEach(function (link) {
-        link.addEventListener('click', function (event) {
-            const partnerUsername = event.target.getAttribute('data-partner');
-            openChat(partnerUsername);
-        });
-    });
-
-    function openChat(partnerUsername) {
-        chatPartnerName.textContent = partnerUsername;
-        chatPopup.style.display = 'flex';
-        loadMessages(partnerUsername);
-    }
-
-    closeChatBtn.addEventListener('click', function () {
-        chatPopup.style.display = 'none';
-    });
-
-    function loadMessages(partnerUsername) {
-        fetch(`chat/get_messages/${partnerUsername}/`)
-            .then(response => response.json())
-            .then(data => {
-                const messages = data.messages;
-                chatMessagesContainer.innerHTML = '';
-                messages.forEach(message => {
-                    const messageElement = document.createElement('div');
-                    messageElement.innerHTML = `
-                        <strong>${message.sender}</strong>: ${message.content}
-                    `;
-                    chatMessagesContainer.appendChild(messageElement);
-                });
-            })
-            .catch(error => {
-                console.error('Error loading messages:', error);
-            });
-    }
-
-    chatForm.addEventListener('submit', function (event) {
-        event.preventDefault();
-        const message = chatInput.value.trim();
-        if (message) {
-            sendMessage(message);
-            chatInput.value = '';
-        }
-    });
-
-    function sendMessage(message) {
-        const partnerUsername = chatPartnerName.textContent;
-        chatMessagesContainer.innerHTML += `
-            <div><strong>You</strong>: ${message}</div>
-        `;
-    }
-});
+  document.addEventListener('DOMContentLoaded', function () {
+      const chatLinks = document.querySelectorAll('.chat-link');
+      const chatPopup = document.getElementById('chat-popup');
+      const chatPartnerName = document.getElementById('chat-partner-name');
+      const closeChatBtn = document.getElementById('close-chat');
+      const chatMessagesContainer = document.getElementById('chat-messages');
+      const chatInput = document.getElementById('chat-input');
+      const chatForm = document.getElementById('chat-form');
+  
+      chatLinks.forEach(function (link) {
+          link.addEventListener('click', function (event) {
+              const partnerUsername = event.target.getAttribute('data-partner');
+              openChat(partnerUsername);
+          });
+      });
+  
+      function openChat(partnerUsername) {
+          chatPartnerName.textContent = partnerUsername;
+          chatPopup.style.display = 'flex';
+          loadMessages(partnerUsername);
+      }
+  
+      closeChatBtn.addEventListener('click', function () {
+          chatPopup.style.display = 'none';
+      });
+  
+      function loadMessages(partnerUsername) {
+          fetch(`chat/get_messages/${partnerUsername}/`)
+              .then(response => response.json())
+              .then(data => {
+                  const messages = data.messages;
+                  chatMessagesContainer.innerHTML = '';
+                  messages.forEach(message => {
+                      const messageElement = document.createElement('div');
+                      messageElement.innerHTML = `
+                          <strong>${message.sender}</strong>: ${message.content}
+                      `;
+                      chatMessagesContainer.appendChild(messageElement);
+                  });
+              })
+              .catch(error => {
+                  console.error('Error loading messages:', error);
+              });
+      }
+  
+      chatForm.addEventListener('submit', function (event) {
+          event.preventDefault();
+          const message = chatInput.value.trim();
+          if (message) {
+              sendMessage(message);
+              chatInput.value = '';
+          }
+      });
+  
+      function sendMessage(message) {
+          const partnerUsername = chatPartnerName.textContent;
+          fetch('/chat/send_message/', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+              },
+              body: JSON.stringify({
+                  receiver: partnerUsername,
+                  content: message
+              })
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  // Cập nhật giao diện khi gửi thành công
+                  chatMessagesContainer.innerHTML += `
+                      <div><strong>You</strong>: ${message}</div>
+                  `;
+              } else {
+                  console.error('Error sending message:', data.error);
+              }
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
+      }
+  });
+</script>
